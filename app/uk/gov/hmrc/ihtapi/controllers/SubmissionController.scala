@@ -26,3 +26,7 @@ trait SubmissionController extends BaseController with HeaderValidator {
     Future.successful(Ok)
   }
 }
+
+object SandboxSubmissionController extends SubmissionController {
+
+}
