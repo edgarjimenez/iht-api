@@ -20,7 +20,7 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import uk.gov.hmrc.play.test.{WithFakeApplication, UnitSpec}
 
-class SubmissionControllerSpec extends UnitSpec with WithFakeApplication {
+class SubmissionControllerSpec extends UnitSpec with WithFakeApplication with Setup {
 
   "Submission controller" must {
 
@@ -32,9 +32,14 @@ class SubmissionControllerSpec extends UnitSpec with WithFakeApplication {
 
   "POST" must {
 
-    "be authorised" in {
-      val result = route(FakeRequest(POST, "/iht-api/submission"))
-      status(result.get) shouldBe(UNAUTHORIZED)
+    "contain accept headers" in {
+      val result = await(controller.post()(emptyRequest))
+      status(result) shouldBe NOT_ACCEPTABLE
+    }
+
+    "respond with OK" in {
+      val result = await(controller.post()(emptyRequestWithAcceptHeader))
+      status(result) shouldBe OK
     }
   }
 }
