@@ -19,17 +19,14 @@ package uk.gov.hmrc.ihtapi.controllers
 import uk.gov.hmrc.api.controllers.HeaderValidator
 import uk.gov.hmrc.ihtapi.models.DeceasedPersonDetails
 import uk.gov.hmrc.play.microservice.controller.BaseController
-
 import scala.concurrent.Future
 
 trait SubmissionController extends BaseController with HeaderValidator {
 
-  def post() = validateAccept(acceptHeaderValidationRules).async(parse.json) {
-        println("Woohoo")
+  final def post() = validateAccept(acceptHeaderValidationRules).async(parse.json) {
+
     implicit request =>
-      withJsonBody[DeceasedPersonDetails] { deceasedPersonDetails =>
-        Future.successful(Ok)
-      }
+      withJsonBody[DeceasedPersonDetails] { deceasedDetails => Future.successful(Ok)}
   }
 }
 

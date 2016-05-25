@@ -16,23 +16,25 @@
 
 package uk.gov.hmrc.ihtapi
 
-import play.api.libs.json.{Json}
-import play.api.test.FakeRequest
+import play.api.libs.json.Json
+import play.api.test.{FakeHeaders, FakeRequest}
 import uk.gov.hmrc.ihtapi.controllers.SandboxSubmissionController
 import uk.gov.hmrc.ihtapi.models.DeceasedPersonDetails
 
 trait Setup {
-  val emptyRequest = FakeRequest()
 
-  val emptyRequestWithAcceptHeader = FakeRequest().withHeaders(
-    "Accept" -> "application/vnd.hmrc.1.0+json")
+  val emptyRequest = FakeRequest(method = "POST", uri = "", headers = FakeHeaders(), body = Json.obj())
+
+  val emptyRequestWithAcceptHeader = FakeRequest(method = "POST", uri = "", headers = FakeHeaders(
+    Seq("Accept" -> Seq("application/vnd.hmrc.1.0+json"))), body = Json.obj())
 
   val controller = SandboxSubmissionController
 
   val validDetails = DeceasedPersonDetails("Mr", "Smith", "John", "2016-01-01")
 
-  val validRequest = FakeRequest()
-    .withHeaders("Accept" -> "application/vnd.hmrc.1.0+json")
-    .withHeaders("Content-Type" -> "application/json")
-    .withJsonBody(Json.toJson(validDetails))
+  val validRequest = FakeRequest(method = "POST", uri = "", headers = FakeHeaders(
+    Seq("Content-type" -> Seq("application/json"),"Accept" -> Seq("application/vnd.hmrc.1.0+json"))), body = Json.toJson(validDetails))
+
+  val invalidRequest = FakeRequest(method = "POST", uri = "", headers = FakeHeaders(
+    Seq("Content-type" -> Seq("application/json"),"Accept" -> Seq("application/vnd.hmrc.1.0+json"))), body = Json.toJson("Invalid stuff"))
 }

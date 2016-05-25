@@ -33,19 +33,14 @@ class SubmissionControllerSpec extends UnitSpec with WithFakeApplication with Se
   "POST" must {
 
     "contain accept headers" in {
-      val result = controller.post.apply(emptyRequest).run
+      val result = controller.post()(emptyRequest)
       status(result) shouldBe NOT_ACCEPTABLE
-    }
-
-    "respond with OK" in {
-      val result = controller.post()(emptyRequestWithAcceptHeader).run
-      status(result) shouldBe OK
     }
 
     "with valid data" must {
 
       "respond with OK" in {
-        val result = controller.post()(validRequest).run
+        val result = controller.post()(validRequest)
         status(result) shouldBe OK
       }
     }
@@ -53,7 +48,15 @@ class SubmissionControllerSpec extends UnitSpec with WithFakeApplication with Se
     "with no data" must {
 
       "respond with Bad Request" in {
-        val result = controller.post()(emptyRequestWithAcceptHeader).run
+        val result = controller.post()(emptyRequestWithAcceptHeader)
+        status(result) shouldBe BAD_REQUEST
+      }
+    }
+
+    "with invalid data" must {
+
+      "respond with Bad Request" in {
+        val result = controller.post()(invalidRequest)
         status(result) shouldBe BAD_REQUEST
       }
     }
