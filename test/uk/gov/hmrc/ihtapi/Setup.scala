@@ -16,8 +16,10 @@
 
 package uk.gov.hmrc.ihtapi
 
+import play.api.libs.json.{Json}
 import play.api.test.FakeRequest
 import uk.gov.hmrc.ihtapi.controllers.SandboxSubmissionController
+import uk.gov.hmrc.ihtapi.models.DeceasedPersonDetails
 
 trait Setup {
   val emptyRequest = FakeRequest()
@@ -26,4 +28,11 @@ trait Setup {
     "Accept" -> "application/vnd.hmrc.1.0+json")
 
   val controller = SandboxSubmissionController
+
+  val validDetails = DeceasedPersonDetails("Mr", "Smith", "John", "2016-01-01")
+
+  val validRequest = FakeRequest()
+    .withHeaders("Accept" -> "application/vnd.hmrc.1.0+json")
+    .withHeaders("Content-Type" -> "application/json")
+    .withJsonBody(Json.toJson(validDetails))
 }
