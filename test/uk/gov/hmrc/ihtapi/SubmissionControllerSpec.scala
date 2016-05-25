@@ -18,14 +18,24 @@ package uk.gov.hmrc.ihtapi
 
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
+import uk.gov.hmrc.ihtapi.models.DeceasedPersonDetails
 import uk.gov.hmrc.play.test.{WithFakeApplication, UnitSpec}
 
 class SubmissionControllerSpec extends UnitSpec with WithFakeApplication {
+
   "Submission controller" must {
 
     "respond to POST /iht-api/submission" in {
       val result = route(FakeRequest(POST, "/iht-api/submission"))
       status(result.get) shouldNot be(NOT_FOUND)
+    }
+  }
+
+  "POST" must {
+
+    "be authorised" in {
+      val result = route(FakeRequest(POST, "/iht-api/submission"))
+      status(result.get) shouldBe(UNAUTHORIZED)
     }
   }
 }
