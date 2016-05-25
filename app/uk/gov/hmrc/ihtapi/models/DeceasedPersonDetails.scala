@@ -14,27 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ihtapi
+package uk.gov.hmrc.ihtapi.models
 
-import play.api.test.FakeRequest
-import play.api.test.Helpers._
-import uk.gov.hmrc.play.test.{WithFakeApplication, UnitSpec}
+import play.api.libs.json.Json
 
-class SubmissionControllerSpec extends UnitSpec with WithFakeApplication {
+case class DeceasedPersonDetails(title: String,
+                                 surname: String,
+                                 firstForename: String,
+                                 dateOfDeath: String)
 
-  "Submission controller" must {
-
-    "respond to POST /iht-api/submission" in {
-      val result = route(FakeRequest(POST, "/iht-api/submission"))
-      status(result.get) shouldNot be(NOT_FOUND)
-    }
-  }
-
-  "POST" must {
-
-    "be authorised" in {
-      val result = route(FakeRequest(POST, "/iht-api/submission"))
-      status(result.get) shouldBe(UNAUTHORIZED)
-    }
-  }
+object DeceasedPersonDetails {
+  implicit val formats = Json.format[DeceasedPersonDetails]
 }
