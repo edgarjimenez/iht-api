@@ -1,3 +1,5 @@
 # microservice specific routes
 
 GET        /hello-world             uk.gov.hmrc.ihtapi.controllers.MicroserviceHelloWorld.hello
+
+POST       /submission              uk.gov.hmrc.ihtapi.controllers.SandboxSubmissionController.post
