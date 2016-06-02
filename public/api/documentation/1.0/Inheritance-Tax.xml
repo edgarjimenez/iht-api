@@ -1,0 +1,69 @@
+<endpoint>
+    <name>Inheritance Tax</name>
+    <description>Inheritance tax–based services, such as submit return.</description>
+    <section id="resource">
+        <title>Resource</title>
+        <resource>PUT /inheritance-tax/{id}</resource>
+    </section>
+    <section id="path-parameters">
+        <title>Path Parameters</title>
+        <table>
+            <headings>
+                <cell>Name</cell>
+                <cell>Type</cell>
+                <cell>Example</cell>
+                <cell>Description</cell>
+            </headings>
+            <rows>
+                <row>
+                    <cell><code>ID</code></cell>
+                    <cell><code>String</code></cell>
+                    <cell><code>XAH012345678A00</code></cell>
+                    <cell>The inheritance tax return case number.</cell>
+                </row>
+            </rows>
+        </table>
+    </section>
+
+    <section id="authorisation">
+        <title>Authorisation</title>
+        <authorisation>
+            <type>NONE</type>
+            <scope>inheritance-tax</scope>
+        </authorisation>
+    </section>
+    <section id="content-types">
+        <title>Accepted Media Types</title>
+        <list>
+            <item>
+                <code>application/vnd.hmrc.1.0+json</code>
+            </item>
+        </list>
+    </section>
+    <section id="response">
+        <title>Response</title>
+        <httpStatus>202 (ACCEPTED)</httpStatus>
+    </section>
+    <section id="error-scenarios">
+        <title>Error Scenarios</title>
+        <table>
+            <headings>
+                <cell>Error Scenario</cell>
+                <cell>HTTP Status</cell>
+                <cell>Code</cell>
+            </headings>
+            <rows>
+                <row>
+                    <cell>Invalid ID</cell>
+                    <cell><code>400 (Bad Request)</code></cell>
+                    <cell><code>IHT_REF_INVALID</code></cell>
+                </row>
+                <row>
+                    <cell>Invalid Payload</cell>
+                    <cell><code>400 (Bad Request)</code></cell>
+                    <cell><code>PAYLOAD_INVALID</code></cell>
+                </row>
+            </rows>
+        </table>
+    </section>
+</endpoint>

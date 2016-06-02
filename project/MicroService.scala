@@ -22,7 +22,7 @@ trait MicroService {
     import ScoverageSbtPlugin._
 
     Seq(
-      ScoverageKeys.coverageExcludedPackages := "<empty>;app.*;config.*;testOnlyDoNotUseInAppConf.*;uk.gov.hmrc.*;prod.*;",
+      ScoverageKeys.coverageExcludedPackages := "<empty>;app.*;config.*;testOnlyDoNotUseInAppConf.*;uk.gov.hmrc.*;prod.*;definition.*;",
       ScoverageKeys.coverageMinimum := 100,
       ScoverageKeys.coverageFailOnMinimum := true,
       ScoverageKeys.coverageHighlighting := true
