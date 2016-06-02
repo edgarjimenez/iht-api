@@ -1,0 +1,30 @@
+{
+  "scopes":[
+    {
+      "key":"inheritance-tax",
+      "name":"submit inheritance tax return",
+      "description":"Submit inheritance tax return"
+    }
+  ],
+  "api":{
+    "name":"Inheritance Tax",
+    "description":"Inheritance tax–based services, such as submit return.",
+    "context":"inheritance-tax",
+    "versions":[
+      {
+        "version":"1.0",
+        "status":"PROTOTYPE",
+        "endpoints":[
+          {
+            "uriPattern":"/{id}",
+            "endpointName":"Submit a return",
+            "method":"PUT",
+            "authType":"NONE",
+            "throttlingTier":"UNLIMITED",
+            "scope":"inheritance-tax"
+          }
+        ]
+      }
+    ]
+  }
+}

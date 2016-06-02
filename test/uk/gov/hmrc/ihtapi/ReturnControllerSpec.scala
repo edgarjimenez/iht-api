@@ -20,12 +20,14 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import uk.gov.hmrc.play.test.{WithFakeApplication, UnitSpec}
 
-class SubmissionControllerSpec extends UnitSpec with WithFakeApplication with Setup {
+class ReturnControllerSpec extends UnitSpec with WithFakeApplication with Setup {
 
-  "Submission controller" must {
+  val id = "XAH012345678A00"
 
-    "respond to POST /iht-api/submission" in {
-      val result = route(FakeRequest(POST, "/iht-api/submission"))
+  "Return controller" must {
+
+    "respond to PUT /inheritance-tax/{id}" in {
+      val result = route(FakeRequest(PUT, s"/inheritance-tax/$id"))
       status(result.get) shouldNot be(NOT_FOUND)
     }
   }
@@ -33,22 +35,22 @@ class SubmissionControllerSpec extends UnitSpec with WithFakeApplication with Se
   "POST" must {
 
     "contain accept headers" in {
-      val result = controller.post()(emptyRequest)
+      val result = controller.put(id)(emptyRequest)
       status(result) shouldBe NOT_ACCEPTABLE
     }
 
     "with valid data" must {
 
       "respond with OK" in {
-        val result = controller.post()(validRequest)
-        status(result) shouldBe OK
+        val result = controller.put(id)(validRequest)
+        status(result) shouldBe ACCEPTED
       }
     }
 
     "with no data" must {
 
       "respond with Bad Request" in {
-        val result = controller.post()(emptyRequestWithAcceptHeader)
+        val result = controller.put(id)(emptyRequestWithAcceptHeader)
         status(result) shouldBe BAD_REQUEST
       }
     }
@@ -56,7 +58,7 @@ class SubmissionControllerSpec extends UnitSpec with WithFakeApplication with Se
     "with invalid data" must {
 
       "respond with Bad Request" in {
-        val result = controller.post()(invalidRequest)
+        val result = controller.put(id)(invalidRequest)
         status(result) shouldBe BAD_REQUEST
       }
     }
