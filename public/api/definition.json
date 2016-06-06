@@ -1,7 +1,7 @@
 {
   "scopes":[
     {
-      "key":"inheritance-tax",
+      "key":"write:inheritance-tax",
       "name":"submit inheritance tax return",
       "description":"Submit inheritance tax return"
     }
@@ -12,7 +12,7 @@
     "context":"inheritance-tax",
     "versions":[
       {
-        "version":1.0,
+        "version":"1.0",
         "status":"PROTOTYPED",
         "endpoints":[
           {
@@ -21,7 +21,7 @@
             "method":"PUT",
             "authType":"NONE",
             "throttlingTier":"UNLIMITED",
-            "scope":"inheritance-tax"
+            "scope":"write:inheritance-tax"
           }
         ]
       }
