@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ihtapi
 
 import com.typesafe.config.Config
-import play.api.{GlobalSettings, Application, Configuration, Play}
+import play.api._
 import uk.gov.hmrc.api.connector.ServiceLocatorConnector
 import uk.gov.hmrc.play.audit.filters.AuditFilter
 import uk.gov.hmrc.play.auth.controllers.AuthParamsControllerConfig
@@ -34,7 +34,12 @@ trait ServiceLocatorRegistration extends GlobalSettings with RunMode {
   val registrationEnabled: Boolean
   implicit val hc: HeaderCarrier
 
-  override def onStart(app: Application): Unit = ServiceLocatorConnector(WSHttp).register
+  override def onStart(app: Application): Unit = {
+    Logger.debug("Registering with service-locator")
+    ServiceLocatorConnector(WSHttp).register map { result =>
+      Logger.debug(s"service-locator registraion result: $result")
+    }
+  }
 }
 
 
