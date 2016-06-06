@@ -27,6 +27,7 @@ import uk.gov.hmrc.play.http.logging.filters.LoggingFilter
 import uk.gov.hmrc.play.microservice.bootstrap.DefaultMicroserviceGlobal
 import uk.gov.hmrc.play.auth.microservice.filters.AuthorisationFilter
 import net.ceedubs.ficus.Ficus._
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 trait ServiceLocatorRegistration extends GlobalSettings with RunMode {
