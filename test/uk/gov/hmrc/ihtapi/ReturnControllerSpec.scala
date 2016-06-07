@@ -32,7 +32,7 @@ class ReturnControllerSpec extends UnitSpec with WithFakeApplication with Setup 
     }
   }
 
-  "POST" must {
+  "PUT" must {
 
     "contain accept headers" in {
       val result = controller.put(id)(emptyRequest)
