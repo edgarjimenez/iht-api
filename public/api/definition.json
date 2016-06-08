@@ -17,7 +17,7 @@
         "endpoints":[
           {
             "uriPattern":"/{id}",
-            "endpointName":"Submit a return",
+            "endpointName":"Submit Return",
             "method":"PUT",
             "authType":"NONE",
             "throttlingTier":"UNLIMITED",
