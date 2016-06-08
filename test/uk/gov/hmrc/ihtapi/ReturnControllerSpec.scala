@@ -26,8 +26,8 @@ class ReturnControllerSpec extends UnitSpec with WithFakeApplication with Setup 
 
   "Return controller" must {
 
-    "respond to PUT /inheritance-tax/{id}" in {
-      val result = route(FakeRequest(PUT, s"/inheritance-tax/$id"))
+    "respond to PUT /{id}" in {
+      val result = route(FakeRequest(PUT, s"/$id"))
       status(result.get) shouldNot be(NOT_FOUND)
     }
   }
