@@ -27,8 +27,8 @@ class DocumentationControllerSpec extends UnitSpec with WithFakeApplication {
     status(result.get) shouldNot be(NOT_FOUND)
   }
 
-  "respond to GET /api/documentation/1.0/Inheritance-Tax" in {
-    val result = route(FakeRequest(GET, "/api/documentation/1.0/Inheritance-Tax"))
+  "respond to GET /api/documentation/1.0/Submit-Return" in {
+    val result = route(FakeRequest(GET, "/api/documentation/1.0/Submit-Return"))
     status(result.get) shouldNot be(NOT_FOUND)
   }
 }
